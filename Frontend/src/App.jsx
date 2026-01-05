@@ -30,7 +30,7 @@ function App() {
     <Context.Provider value={{ user, setUser }}>
       {/* Protected routes like home page, question and answer pages goes below */}
       <ProtectedRoute></ProtectedRoute>
-<h1>hello there</h1>
+      <h1>hello there</h1>
       {/* unprotected routes like Howitworks , auth/login/register pages goes below */}
     </Context.Provider>
   );
