@@ -1,6 +1,7 @@
-import React, { createContext, useEffect } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import instance from "./Utility/axios";
+import { useNavigate } from "react-router-dom";
 
 export const Context = createContext();
 function App() {
@@ -29,7 +30,7 @@ function App() {
     <Context.Provider value={{ user, setUser }}>
       {/* Protected routes like home page, question and answer pages goes below */}
       <ProtectedRoute></ProtectedRoute>
-
+<h1>hello there</h1>
       {/* unprotected routes like Howitworks , auth/login/register pages goes below */}
     </Context.Provider>
   );
