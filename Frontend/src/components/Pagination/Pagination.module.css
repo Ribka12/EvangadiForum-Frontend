@@ -1,4 +1,0 @@
-.wrap{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:16px;margin-bottom:24px}
-.btn{background:#e5e7eb;color:#1f2937;border:none;padding:8px 12px;border-radius:6px}
-.btn[disabled]{opacity:.5}
-.page{padding:6px 10px;border:1px solid #e5e7eb;border-radius:6px}
