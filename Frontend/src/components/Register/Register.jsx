@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../App";
 import styles from "./Register.module.css";
 import axios from "../../Utility/axios";
-// import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import i18n from "../../i18n";
 
 export default function Signup() {
@@ -114,12 +114,10 @@ export default function Signup() {
             <span
               className={styles.eye}
               onClick={() => setShowPassword(!showPassword)}
+              aria-label="Toggle password visibility"
             >
-              👁
-            </span>
-            {/* <span onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </span> */}
+            </span>
           </div>
 
           {error && <div className={styles.error}>{error}</div>}
