@@ -123,3 +123,21 @@
   color: #0d6efd;
   text-decoration: none;
 }
+
+/* Error message box */
+.errorBox {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  color: #842029;
+  background-color: #f8d7da;
+  border: 1px solid #f5c2c7;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Red border on inputs when error */
+.inputError {
+  border: 1px solid #dc3545 !important;
+}
