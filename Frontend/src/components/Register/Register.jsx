@@ -42,9 +42,9 @@ export default function Register() {
       }
       await axios.post("/user/register", form);
       const res = await axios.post("/user/login", { email, password });
-      localStorage.setItem("token", res.data.token);
+      // localStorage.setItem("token", res.data.token);
       setUser(res.data.user || res.data);
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       console.log("REGISTER ERROR 👉", err);
       console.log("RESPONSE 👉", err.response?.data);

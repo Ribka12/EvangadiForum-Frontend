@@ -6,6 +6,7 @@ import api from "./Utility/axios";
 import Register from "./components/Register/Register";
 import HowItWorks from "./pages/Howitworks/HowItWorks";
 import Layout from "./components/Layout/Layout";
+import Question from "./pages/Question-page/Question";
 
 export const Appstate = createContext();
 
@@ -23,7 +24,7 @@ function App() {
       }
 
       try {
-        const { data } = await api.get("/check");
+        const { data } = await api.get("/user/check");
         setUser(data);
       } catch (error) {
         localStorage.removeItem("token");
@@ -60,7 +61,17 @@ function App() {
             path="home"
             element={
               // <ProtectedRoute>
-                <Home />
+              <Home />
+
+              // </ProtectedRoute>
+            }
+          />
+          <Route
+            path="ask"
+            element={
+              // <ProtectedRoute>
+              <Question />
+
               // </ProtectedRoute>
             }
           />

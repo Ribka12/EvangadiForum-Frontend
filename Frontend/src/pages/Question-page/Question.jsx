@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Context } from "../../App";
+import { Appstate } from "../../App";
 import instance from "../../Utility/axios";
 import styles from "./Question.module.css";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Question() {
-  const { user } = useContext(Context);
+  const { user } = useContext(Appstate);
   const token = localStorage.getItem("token");
-
+  const navigate= useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [msg, setMsg] = useState("");
@@ -44,6 +45,8 @@ export default function Question() {
       setTitle("");
       setDescription("");
       showMessage("Question posted successfully!", "success");
+      navigate('/home')
+      
     } catch (error) {
       showMessage(
         error.response?.data?.message || "Failed to post question. Try again.",

@@ -96,7 +96,7 @@ function Home() {
   };
 
   const handleAskQuestion = () => {
-    navigate("/question");
+    navigate("/ask");
   };
 
   const handleQuestionClick = (questionId) => {
