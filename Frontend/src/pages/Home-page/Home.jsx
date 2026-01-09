@@ -242,7 +242,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Context from "../../context";
-import forumApi from "../../Utility/forumApi";
+import forumApi from "../../Utility/axios";
 import styles from "./Home.module.css";
 
 function Home() {
@@ -259,7 +259,7 @@ function Home() {
       navigate("/login");
       return;
     }
-    
+
     // If we have user context, no need to fetch
     if (!user?.username) {
       fetchUserData();
@@ -269,7 +269,7 @@ function Home() {
   const fetchUserData = async () => {
     const token = localStorage.getItem("token");
     if (!token) return;
-    
+
     try {
       // Fetch user data if needed
     } catch (error) {
@@ -308,12 +308,14 @@ function Home() {
     if (!q) return questions;
     return questions.filter((item) => {
       const title = (item.title || "").toLowerCase();
-      const description = (item.description || item.content || "").toLowerCase();
+      const description = (
+        item.description ||
+        item.content ||
+        ""
+      ).toLowerCase();
       const userName = (item.username || item.user_name || "").toLowerCase();
       return (
-        title.includes(q) ||
-        description.includes(q) ||
-        userName.includes(q)
+        title.includes(q) || description.includes(q) || userName.includes(q)
       );
     });
   }, [questions, query]);
@@ -346,7 +348,7 @@ function Home() {
     if (user?.username) {
       return user.username;
     }
-    
+
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       try {
@@ -356,17 +358,17 @@ function Home() {
         console.error("Error parsing user data:", error);
       }
     }
-    
+
     const token = localStorage.getItem("token");
     if (token) {
       try {
-        const payload = JSON.parse(atob(token.split('.')[1]));
+        const payload = JSON.parse(atob(token.split(".")[1]));
         return payload.username || payload.email || "User";
       } catch (error) {
         console.error("Error decoding token:", error);
       }
     }
-    
+
     return "User";
   };
 
@@ -407,8 +409,8 @@ function Home() {
             filtered.map((item) => {
               const questionId = item.question_id || item.id;
               return (
-                <div 
-                  key={questionId} 
+                <div
+                  key={questionId}
                   className={styles.questionCard}
                   onClick={() => handleQuestionClick(questionId)}
                 >
@@ -434,7 +436,7 @@ function Home() {
                       {item.description || ""}
                     </div>
                   </div>
-                  <div 
+                  <div
                     className={styles.arrow}
                     onClick={(e) => {
                       e.stopPropagation();
