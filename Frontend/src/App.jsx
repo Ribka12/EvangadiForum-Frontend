@@ -57,11 +57,11 @@ function App() {
           <Route path="Howitworks" element={<HowItWorks />} />
 
           <Route
-            path="/home"
+            path="home"
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <Home />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }
           />
 

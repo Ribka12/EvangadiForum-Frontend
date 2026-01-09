@@ -50,7 +50,7 @@ function Login() {
     }
 
     try {
-      const { data } = await api.post("/login", {
+      const { data } = await api.post("/user/login", {
         email: emailValue,
         password: passwordValue,
       });

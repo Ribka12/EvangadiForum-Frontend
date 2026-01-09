@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Context from "../../context";
-import forumApi from "../../Utility/axios";
 import styles from "./Home.module.css";
+import axios from "axios";
+import instance from "../../Utility/axios";
+import { Appstate } from "../../App";
 
 function Home() {
-  const { user } = useContext(Context);
+  const { user } = useContext(Appstate);
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [query, setQuery] = useState("");
@@ -43,7 +44,7 @@ function Home() {
     async function fetchQuestions() {
       try {
         setLoading(true);
-        const { data } = await forumApi.get("/question", {
+        const { data } = await instance.get("/question", {
           headers: { Authorization: "Bearer " + token },
         });
         const list = data.questions || data || [];
