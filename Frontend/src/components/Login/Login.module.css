@@ -5,6 +5,7 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Container */
 .loginContainer {
   display: flex;
   justify-content: center;
@@ -13,6 +14,7 @@
   background: #f8f9fa;
 }
 
+/* Form */
 .loginForm {
   width: 100%;
   max-width: 400px;
@@ -22,12 +24,14 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
+/* Title */
 .loginTitle {
   text-align: center;
   margin-bottom: 24px;
   font-weight: 600;
 }
 
+/* Form group */
 .formGroup {
   margin-bottom: 18px;
 }
@@ -39,6 +43,7 @@
   font-weight: 500;
 }
 
+/* Inputs */
 .formGroup input {
   width: 100%;
   padding: 10px 12px;
@@ -52,6 +57,7 @@
   border-color: #0d6efd;
 }
 
+/* Password input */
 .passwordWrapper {
   display: flex;
   align-items: center;
@@ -61,6 +67,7 @@
   flex: 1;
 }
 
+/* Eye button */
 .eyeBtn {
   background: transparent;
   border: 1px solid #ced4da;
@@ -76,6 +83,7 @@
   font-size: 18px;
 }
 
+/* Forgot password */
 .forgotPassword {
   text-align: right;
   margin-bottom: 20px;
@@ -87,6 +95,7 @@
   color: #0d6efd;
 }
 
+/* Login button */
 .loginBtn {
   width: 100%;
   padding: 10px;
@@ -103,6 +112,7 @@
   background: #0b5ed7;
 }
 
+/* Register text */
 .registerText {
   text-align: center;
   margin-top: 18px;
@@ -112,4 +122,22 @@
 .registerText a {
   color: #0d6efd;
   text-decoration: none;
+}
+
+/* Error message box */
+.errorBox {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  color: #842029;
+  background-color: #f8d7da;
+  border: 1px solid #f5c2c7;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Red border on inputs when error */
+.inputError {
+  border: 1px solid #dc3545 !important;
 }

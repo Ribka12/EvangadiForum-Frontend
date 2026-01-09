@@ -1,75 +1,63 @@
 .header {
-  background: white;
-  padding: 15px 0;
-  border-bottom: 1px solid #ddd;
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eaeaea;
 }
 
-.container {
+.header_container {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  margin: auto;
+  padding: 12px 20px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
 }
 
-.leftSection {
-  display: flex;
-  align-items: center;
-  gap: 40px;
+/* Logo */
+.logo img {
+  height: 30px;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: 900;
-  color: #000;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
+/* Navigation */
 .nav {
   display: flex;
-  gap: 30px;
-}
-
-.navItem {
-  color: #000;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.navItem:hover {
-  color: #007bff;
-}
-
-.rightSection {
-  display: flex;
   align-items: center;
+  gap: 20px;
 }
 
-.signin, .logout {
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.signin {
-  color: #007bff;
+.nav a {
   text-decoration: none;
+  color: #555;
+  font-size: 14px;
 }
 
-.signin:hover {
-  color: #0056b3;
+.nav a:hover {
+  color: #000;
+}
+
+/* Auth Button */
+.auth-btn {
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-size: 13px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.login {
+  background-color: #4f6ef7;
+  color: #fff;
 }
 
 .logout {
-  color: #ff0000;
+  background-color: #4f6ef7;
+  color: #fff;
 }
 
-.logout:hover {
-  color: #cc0000;
+/* Responsive */
+@media (max-width: 768px) {
+  .nav a {
+    display: none;
+  }
 }

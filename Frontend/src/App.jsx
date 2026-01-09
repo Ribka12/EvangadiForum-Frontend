@@ -1,34 +1,69 @@
-
-
-import React, { useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import Layout from "./components/Layout/Layout";
-import Home from "./pages/Home-page/Home";
 import Login from "./components/Login/Login";
-import Context from "./context";
+import Home from "./pages/Home-page/Home";
+import api from "./Utility/axios";
+
+export const Appstate = createContext();
 
 function App() {
   const [user, setUser] = useState(null);
+  const [loadingAuth, setLoadingAuth] = useState(true);
+
+  useEffect(() => {
+    async function checkUser() {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        setLoadingAuth(false);
+        return;
+      }
+
+      try {
+        const { data } = await api.get("/check");
+        setUser(data);
+      } catch (error) {
+        localStorage.removeItem("token");
+        setUser(null);
+      } finally {
+        setLoadingAuth(false);
+      }
+    }
+
+    checkUser();
+  }, []);
+
+  const ProtectedRoute = ({ children }) => {
+    if (loadingAuth) {
+      return (
+        <div className="d-flex justify-content-center align-items-center vh-100">
+          <div className="spinner-border text-primary" role="status" />
+        </div>
+      );
+    }
+
+    return user ? children : <Navigate to="/login" replace />;
+  };
 
   return (
-    <Context.Provider value={{ user, setUser }}>
+    <Appstate.Provider value={{ user, setUser }}>
       <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/login" element={<Login />} />
+
         <Route
           path="/home"
           element={
             <ProtectedRoute>
-              <Layout>
-                <Home />
-              </Layout>
+              <Home />
             </ProtectedRoute>
           }
         />
+
+        <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
-    </Context.Provider>
+    </Appstate.Provider>
   );
 }
 
 export default App;
+

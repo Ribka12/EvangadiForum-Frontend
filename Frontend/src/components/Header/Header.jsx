@@ -1,37 +1,53 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Context from '../../context';
-import styles from './Header.module.css';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import classes from "./Header.module.css";
+import logo from "../../../public/evangadi-logo.png";
 
-function Header() {
-  const { setUser } = useContext(Context);
+const Header = () => {
   const navigate = useNavigate();
 
+  const isLoggedIn = localStorage.getItem("token");
+
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    setUser(null);
-    navigate('/login');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
-        <div className={styles.leftSection}>
-          <div className={styles.logo}>EVING4DI</div>
-          <div className={styles.nav}>
-            <span className={styles.navItem}>Home</span>
-            <span className={styles.navItem}>How it works</span>
-          </div>
+    <header className={classes.header}>
+      <div className={classes.header_container}>
+        {/* Logo */}
+        <div className={classes.logo}>
+          <Link to="/">
+            <img src={logo} alt="Evangadi Logo" />
+          </Link>
         </div>
-        
-        <div className={styles.rightSection}>
-          <span onClick={handleLogout} className={styles.logout}>
-            LOG OUT
-          </span>
-        </div>
+
+        {/* Navigation */}
+        <nav className={classes.nav}>
+          <Link to="/">Home</Link>
+          <Link to="/how-it-works">How it works</Link>
+
+          {isLoggedIn ? (
+            <button
+              className={`${classes.auth_btn} ${classes.logout}`}
+              onClick={handleLogout}
+            >
+              LOG OUT
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className={`${classes.auth_btn} ${classes.login}`}
+            >
+              SIGN IN
+            </Link>
+          )}
+        </nav>
       </div>
     </header>
   );
-}
+};
 
 export default Header;
