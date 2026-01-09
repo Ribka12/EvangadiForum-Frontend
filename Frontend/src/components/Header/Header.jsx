@@ -27,7 +27,7 @@ const Header = () => {
         {/* Navigation */}
         <nav className={classes.nav}>
           <Link to="/">Home</Link>
-          <Link to="/how-it-works">How it works</Link>
+          <Link to="/Howitworks">How it works</Link>
 
           {isLoggedIn ? (
             <button
@@ -41,7 +41,8 @@ const Header = () => {
               to="/login"
               className={`${classes.auth_btn} ${classes.login}`}
             >
-              SIGN IN
+              {isLoggedIn ? 'LOG OUT' :  'SIGN IN'}
+            
             </Link>
           )}
         </nav>

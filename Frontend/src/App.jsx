@@ -3,6 +3,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Home from "./pages/Home-page/Home";
 import api from "./Utility/axios";
+import Register from "./components/Register/Register";
+import HowItWorks from "./pages/Howitworks/HowItWorks";
+import Layout from "./components/Layout/Layout";
 
 export const Appstate = createContext();
 
@@ -48,22 +51,25 @@ function App() {
   return (
     <Appstate.Provider value={{ user, setUser }}>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="Howitworks" element={<HowItWorks />} />
 
-        <Route
-          path="/home"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route path="*" element={<Navigate to="/home" replace />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
+        </Route>
       </Routes>
     </Appstate.Provider>
   );
 }
 
 export default App;
-

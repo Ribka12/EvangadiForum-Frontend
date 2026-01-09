@@ -2,16 +2,16 @@ import React, { useContext, useState } from "react";
 // import axios from 'axios'
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import { Context } from "../../App";
+import { Appstate } from "../../App";
 import styles from "./Register.module.css";
 import axios from "../../Utility/axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import i18n from "../../i18n";
 
-export default function Signup() {
+export default function Register() {
   const navigate = useNavigate();
   // const { setToken, setUsername } = useContext(Context);
-  const { setUser } = useContext(Context);
+  const { setUser } = useContext(Appstate);
 
   const { t } = useTranslation();
   const [form, setForm] = useState({
