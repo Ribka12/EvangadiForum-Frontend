@@ -3,8 +3,8 @@
 ================================ */
 * {
   box-sizing: border-box;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 /* ================================
@@ -196,7 +196,6 @@
   margin-top: 10px;
 }
 
-
 /* ================================
    GIVE ANSWER FORM (UNCHANGED)
 ================================ */
@@ -294,6 +293,11 @@
   background-color: #fee2e2;
   color: #991b1b;
   border: 1px solid #ef4444;
+}
+
+.questionTime {
+  color: #9ca3af;
+  font-size: 14px;
 }
 /* ================================
    RESPONSIVE
