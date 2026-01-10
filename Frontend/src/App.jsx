@@ -60,14 +60,22 @@ function App() {
               element={user ? <Navigate to="/home" replace /> : <Register />}
             />
             <Route
-              path="forgot-password"
-              element={user ? <Navigate to="/home" replace /> : <Forgotpassword />}
+              path="forgotpassword"
+              element={
+                user ? <Navigate to="/home" replace /> : <Forgotpassword />
+              }
             />
           </Route>
 
           <Route
             index
-            element={user ? <Navigate to="/home" replace /> : <Login />}
+            element={
+              user ? (
+                <Navigate to="/home" replace />
+              ) : (
+                <Navigate to="/auth/login" replace />
+              )
+            }
           />
           <Route
             path="home"

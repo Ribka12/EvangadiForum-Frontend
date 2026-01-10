@@ -106,7 +106,7 @@ function Login() {
               className={style.eyeBtn}
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <EyeSlash /> : <Eye />}
+              {showPassword ? <Eye /> : <EyeSlash />}
             </button>
           </div>
         </div>
