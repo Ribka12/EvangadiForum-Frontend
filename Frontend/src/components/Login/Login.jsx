@@ -1,14 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import api from "../../Utility/axios";
 import style from "./Login.module.css";
+import { Appstate } from "../../App";
 
 function Login() {
   const email = useRef(null);
   const password = useRef(null);
   const navigate = useNavigate();
-
+  const { user, setUser } = useContext(Appstate);
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -56,6 +57,7 @@ function Login() {
       });
 
       localStorage.setItem("token", data.token);
+      setUser(data);
       navigate("/home");
     } catch (error) {
       showError(
@@ -110,7 +112,7 @@ function Login() {
         </div>
 
         <div className={style.forgotPassword}>
-          <Link to="/forgot-password">Forgot password?</Link>
+          <Link to="/auth/forgotpassword">Forgot password?</Link>
         </div>
 
         <button type="submit" className={style.loginBtn}>
@@ -118,7 +120,7 @@ function Login() {
         </button>
 
         <p className={style.registerText}>
-          No account? <Link to="/register">Register</Link>
+          No account? <Link to="/auth/register">Register</Link>
         </p>
       </form>
     </div>

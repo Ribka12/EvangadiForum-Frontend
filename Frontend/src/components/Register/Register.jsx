@@ -43,8 +43,8 @@ export default function Register() {
       await axios.post("/user/register", form);
       const res = await axios.post("/user/login", { email, password });
       // localStorage.setItem("token", res.data.token);
-      setUser(res.data.user || res.data);
-      navigate("/login");
+      // setUser(res.data.user || res.data);
+      navigate("/auth/login");
     } catch (err) {
       console.log("REGISTER ERROR 👉", err);
       console.log("RESPONSE 👉", err.response?.data);
@@ -63,7 +63,7 @@ export default function Register() {
         <h2 style={{ textAlign: "center" }}>{t("signup.title")}</h2>
         <p className={styles.topText}>
           {t("signup.haveAccount")}{" "}
-          <Link to="/login">{t("signup.signIn")}</Link>
+          <Link to="/auth/login">{t("signup.signIn")}</Link>
         </p>
         <form className={styles.form} onSubmit={submit}>
           <input

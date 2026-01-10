@@ -23,7 +23,7 @@ const About = () => {
             network here.
           </p>
           <span onClick={() => setShowPassword((prev) => !prev)}>
-            <Link to="/HowItWorks" className={styles.btn}>
+            <Link to="/Howitworks" className={styles.btn}>
               HOW IT WORKS
             </Link>
           </span>

@@ -34,6 +34,7 @@ function QuestionAnswer() {
       </div>
     );
   }
+ 
 
   return (
     <div className={styles.container}>
@@ -44,11 +45,11 @@ function QuestionAnswer() {
       </div>
 
       <p className={styles.description}>{singleQuestion.description}</p>
-      
 
       <h5 className={styles.answerTitle}>Answers from the Community</h5>
 
       <GetAnswer refreshKey={refreshKey} />
+      
 
       <GiveAnswer onSuccess={() => setRefreshKey((prev) => prev + 1)} />
     </div>

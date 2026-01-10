@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./Header.module.css";
 import logo from "../../../public/evangadi-logo.png";
+import { Appstate } from "../../App";
 
 const Header = () => {
   const navigate = useNavigate();
-
+  const {user, setUser} = useContext(Appstate);
   const isLoggedIn = localStorage.getItem("token");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate("/login");
+    setUser(null)
+    navigate("/auth/login");
   };
 
   return (
@@ -34,14 +36,14 @@ const Header = () => {
               className={`${classes.auth_btn} ${classes.logout}`}
               onClick={handleLogout}
             >
-              {isLoggedIn ? "LOG OUT" : "SIGN IN"}
+              LOG OUT
             </button>
           ) : (
             <Link
-              to="/login"
+              to="/auth/login"
               className={`${classes.auth_btn} ${classes.login}`}
             >
-              {isLoggedIn ? "LOG OUT" : "SIGN IN"}
+              SIGN IN
             </Link>
           )}
         </nav>

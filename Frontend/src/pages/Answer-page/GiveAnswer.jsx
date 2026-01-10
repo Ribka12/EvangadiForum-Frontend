@@ -6,8 +6,13 @@ import styles from "./QuestionPage.module.css";
 function GiveAnswer({ onSuccess }) {
   const answer = useRef();
   const [error, setError] = useState("");
+  const [msg, setmsg] = useState("");
   const { question_id } = useParams();
   const token = localStorage.getItem("token");
+
+  setTimeout(() => {
+    setmsg("");
+  }, 2000);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -28,6 +33,7 @@ function GiveAnswer({ onSuccess }) {
 
       answer.current.value = "";
       setError("");
+      setmsg("Question posted successfully!!");
       onSuccess();
     } catch (err) {
       setError("Something went wrong!");
@@ -49,7 +55,11 @@ function GiveAnswer({ onSuccess }) {
         placeholder="Write your answer..."
         className={`${styles.textarea} ${error ? styles.textareaError : ""}`}
       ></textarea>
-
+      <div>
+        {msg && (
+          <div className={`${styles.status} ${styles.success}`}>{msg}</div>
+        )}
+      </div>
       <button type="submit" className={styles.submitBtn}>
         Post Answer
       </button>

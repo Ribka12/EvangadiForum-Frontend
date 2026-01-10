@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, createContext, use } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Home from "./pages/Home-page/Home";
@@ -8,6 +8,10 @@ import HowItWorks from "./pages/Howitworks/HowItWorks";
 import Layout from "./components/Layout/Layout";
 import Question from "./pages/Question-page/Question";
 
+import Pagenotfound from "./pages/Pagenotfound/Pagenotfound";
+import QuestionAnswer from "./pages/Answer-page/QuestionAnswer";
+import AuthPage from "./pages/Authpage/AuthPage";
+import Forgotpassword from "./pages/Forgotpassword/Forgotpassword";
 export const Appstate = createContext();
 
 function App() {
@@ -24,7 +28,11 @@ function App() {
       }
 
       try {
-        const { data } = await api.get("/user/check");
+        const { data } = await api.get("/user/check", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setUser(data);
       } catch (error) {
         localStorage.removeItem("token");
@@ -37,47 +45,48 @@ function App() {
     checkUser();
   }, []);
 
-  const ProtectedRoute = ({ children }) => {
-    if (loadingAuth) {
-      return (
-        <div className="d-flex justify-content-center align-items-center vh-100">
-          <div className="spinner-border text-primary" role="status" />
-        </div>
-      );
-    }
-
-    return user ? children : <Navigate to="/login" replace />;
-  };
-
   return (
-    <Appstate.Provider value={{ user, setUser }}>
+    <Appstate.Provider value={{ user, setUser, loadingAuth }}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
           <Route path="Howitworks" element={<HowItWorks />} />
+          <Route path="auth/" element={<AuthPage />}>
+            <Route
+              path="login"
+              element={user ? <Navigate to="/home" replace /> : <Login />}
+            />
+            <Route
+              path="register"
+              element={user ? <Navigate to="/home" replace /> : <Register />}
+            />
+            <Route
+              path="forgot-password"
+              element={user ? <Navigate to="/home" replace /> : <Forgotpassword />}
+            />
+          </Route>
 
           <Route
+            index
+            element={user ? <Navigate to="/home" replace /> : <Login />}
+          />
+          <Route
             path="home"
-            element={
-              // <ProtectedRoute>
-              <Home />
-
-              // </ProtectedRoute>
-            }
+            element={user ? <Home /> : <Navigate to="/auth/login" replace />}
           />
           <Route
             path="ask"
             element={
-              // <ProtectedRoute>
-              <Question />
-
-              // </ProtectedRoute>
+              user ? <Question /> : <Navigate to="/auth/login" replace />
             }
           />
-
-          <Route path="*" element={<Navigate to="/home" replace />} />
+          <Route
+            path={`/answer/:question_id`}
+            element={
+              user ? <QuestionAnswer /> : <Navigate to="/auth/login" replace />
+            }
+          />
         </Route>
+        <Route path="*" element={<Pagenotfound />} />
       </Routes>
     </Appstate.Provider>
   );

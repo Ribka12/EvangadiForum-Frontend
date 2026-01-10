@@ -11,7 +11,7 @@ const Footer = () => {
         <div className={classes.footer_left}>
           <img src={logo} alt="Evangadi Logo" />
           <div className={classes.social_icons}>
-            <FaFacebookF />
+            <FaFacebookF size={30}/>
             <FaInstagram />
             <FaYoutube />
           </div>

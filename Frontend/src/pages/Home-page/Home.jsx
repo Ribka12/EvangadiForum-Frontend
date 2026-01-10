@@ -12,19 +12,7 @@ function Home() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // Check if user is logged in
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-
-    // If we have user context, no need to fetch
-    if (!user?.username) {
-      fetchUserData();
-    }
-  }, [navigate, user]);
+ 
 
   const fetchUserData = async () => {
     const token = localStorage.getItem("token");
@@ -38,10 +26,11 @@ function Home() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
+    // const token = localStorage.getItem("token");
+    if (!user) return;
 
     async function fetchQuestions() {
+       const token = localStorage.getItem("token");
       try {
         setLoading(true);
         const { data } = await instance.get("/question", {

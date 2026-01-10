@@ -47,12 +47,16 @@
 
 .login {
   background-color: #4f6ef7;
-  color: #fff;
+  border-radius: 5px;
+  color: #ffffff !important; 
+  padding: 5px 10px;
 }
 
 .logout {
   background-color: #4f6ef7;
   color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
 }
 
 /* Responsive */

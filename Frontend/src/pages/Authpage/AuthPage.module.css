@@ -17,8 +17,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 26px;
+  /* padding: 26px; */
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 /* big light blue circle behind the card */
@@ -26,7 +27,7 @@
   content: "";
   position: absolute;
   left: -120px;
-  top: 120px;
+  top: 10px;
   width: 360px;
   height: 360px;
   background: rgba(79, 110, 247, 0.22);
@@ -38,7 +39,7 @@
   content: "";
   position: absolute;
   left: 0;
-  top: 82px;
+  top: 12px;
   width: 170px;
   height: 130px;
   background: rgba(79, 110, 247, 0.25);
@@ -51,11 +52,11 @@
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 26px;
+  /* padding: 26px; */
   display: grid;
   justify-items: center;
   grid-template-columns: 440px 1fr;
-  column-gap: 15px;
+  column-gap: 10px;
   align-items: center;
   position: relative;
   z-index: 2;
@@ -64,7 +65,7 @@
 .left {
   display: flex;
   justify-content: center;
-  padding-top: 36px;
+  padding-top: 3px;
 }
 /* .left {
   justify-content: flex-start;

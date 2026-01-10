@@ -1,6 +1,10 @@
+/* ================================
+   GLOBAL RESET (MODULE-SAFE)
+================================ */
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 /* ================================
@@ -8,69 +12,89 @@
 ================================ */
 .container {
   max-width: 900px;
-  margin: 20px auto;
-  padding: 0 15px;
+  margin: 32px auto;
+  padding: 0 16px;
 }
 
 /* ================================
-   QUESTION HEADER
+   QUESTION HEADER (ENHANCED)
 ================================ */
 .sectionTitle {
-  font-weight: 500;
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: #0d6efd;
+  margin-bottom: 14px;
+  text-transform: uppercase;
 }
 
+/* Title row */
 .titleRow {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .titleRow h4 {
   margin: 0;
-  font-weight: 600;
+  font-size: 21px;
+  font-weight: 800;
+  color: #212529;
+  line-height: 1.3;
 }
 
+/* Arrow icon */
 .arrowIcon {
   color: #0d6efd;
   font-size: 18px;
 }
 
+/* ================================
+   QUESTION DESCRIPTION (ENHANCED)
+================================ */
 .description {
-  font-size: 1.05rem;
-  color: #6c757d;
-  margin-top: 6px;        /* small gap for design */
-  margin-bottom: 20px;
-  border-bottom: 1.5px solid grey;
-  padding-bottom: 20px;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #495057;
+  margin-top: 12px;
+  margin-bottom: 50px;
+  padding: 16px 18px;
+
+  background-color: #f8f9fa;
+  border-left: 4px solid #0d6efd;
+  border-radius: 8px;
 }
 
+/* ================================
+   ANSWERS HEADER
+================================ */
 .answerTitle {
-  margin-top: 25px;
-  font-size: 20px;
-  font-weight: 500;
-  border-bottom: 1.5px solid grey;
+  margin-top: 62px;
+  font-size: 19px;
+  font-weight: 600;
+  color: #343a40;
   padding-bottom: 10px;
+  border-bottom: 1px solid #dee2e6;
 }
 
 /* ================================
    LOADING SPINNER
 ================================ */
 .spinnerWrapper {
-  height: 300px;
+  height: 320px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .spinner {
-  width: 42px;
-  height: 42px;
-  border: 4px solid #dee2e6;
+  width: 44px;
+  height: 44px;
+  border: 4px solid #e9ecef;
   border-top: 4px solid #0d6efd;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 0.9s linear infinite;
 }
 
 @keyframes spin {
@@ -80,20 +104,21 @@
 }
 
 /* ================================
-   ANSWERS CARD (BOOTSTRAP-LIKE)
+   ANSWERS CONTAINER
 ================================ */
 .answersBox {
-  max-height: 400px;
+  max-height: 420px;
   overflow-y: auto;
-  padding: 15px;
-  margin-top: 15px;
-  border-radius: 6px;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  padding: 18px;
+  margin-top: 28px;
+  margin-bottom: 60px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
 }
 
-/* scrollbar (nice touch) */
+/* Custom Scrollbar */
 .answersBox::-webkit-scrollbar {
   width: 6px;
 }
@@ -104,12 +129,13 @@
 }
 
 /* ================================
-   NO ANSWERS
+   NO ANSWERS STATE
 ================================ */
 .noAnswer {
   text-align: center;
   color: #6c757d;
-  padding: 20px 0;
+  font-size: 0.95rem;
+  padding: 24px 0;
 }
 
 /* ================================
@@ -118,16 +144,19 @@
 .answerCard {
   display: flex;
   align-items: flex-start;
-  padding: 12px 0;
+  gap: 24px;
+  padding: 16px 0;
 }
 
 .answerCard:not(:last-child) {
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid #f1f3f5;
 }
 
-/* LEFT AVATAR COLUMN */
+/* ================================
+   AVATAR COLUMN
+================================ */
 .avatarBlock {
-  width: 70px;
+  width: 72px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,66 +164,68 @@
 }
 
 .avatar {
-  width: 45px;
-  height: 45px;
-  background-color: #e9ecef;
+  width: 46px;
+  height: 46px;
+  background-color: #f1f3f5;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #495057;
 }
 
 .avatarBlock small {
-  font-size: 0.75rem;
-  color: #6c757d;
+  font-size: 1rem;
+  color: #868e96;
   text-align: center;
-}
-
-/* RIGHT CONTENT */
-.answerContent {
-  flex: 1;
-  font-size: 0.95rem;
-  color: #212529;
-  line-height: 1.5;
 }
 
 /* ================================
-   GIVE ANSWER – FINAL DESIGN
+   ANSWER CONTENT
 ================================ */
-
-/* FORM CARD */
-.answerForm {
-  margin-top: 20px;
-  padding: 20px;
-
-  /* Right-side border only */
-  border-right: 4px solid gray;
-
-  /* Rounded but subtle */
-  border-radius: 10px;
-
-  /* Shadow visible mostly on right */
-  box-shadow: 8px 0 18px rgba(0, 0, 0, 0.08);
-
-  background-color: #ffffff;
+.answerContent {
+  flex: 1;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #3c4b5f;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  word-wrap: break-word;
+  margin-top: 10px;
 }
 
-/* HEADER (h4 + small) */
+
+/* ================================
+   GIVE ANSWER FORM (UNCHANGED)
+================================ */
+.answerForm {
+  margin-top: 28px;
+  padding: 22px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border-left: 4px solid #0d6efd;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* FORM HEADER */
 .answerHeader {
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  font-weight: 700;
 }
 
 .answerHeader h4 {
   margin: 0;
-  font-weight: 600;
+  font-size: 18px;
+
   color: #212529;
 }
 
 .answerHeader small {
   display: block;
-  margin-top: 2px;
+  margin-top: 4px;
   color: #6c757d;
   font-size: 0.85rem;
 }
@@ -204,26 +235,26 @@
   color: #842029;
   background-color: #f8d7da;
   border: 1px solid #f5c2c7;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
   font-size: 0.9rem;
 }
 
 /* TEXTAREA */
 .textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   resize: none;
-  border-radius: 5px;
+  border-radius: 8px;
   border: 1px solid #ced4da;
   font-size: 0.95rem;
   outline: none;
 }
 
 .textarea:focus {
-  border-color: #86b7fe;
-  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
 }
 
 .textareaError {
@@ -233,29 +264,50 @@
 
 /* SUBMIT BUTTON */
 .submitBtn {
-  margin-top: 12px;
-  padding: 8px 20px;
+  margin-top: 14px;
+  padding: 9px 22px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: #0d6efd;
-  color: white;
+  color: #ffffff;
   font-size: 0.9rem;
+  font-weight: 500;
   cursor: pointer;
 }
 
 .submitBtn:hover {
   background-color: #0b5ed7;
 }
-
+/* Status messages */
+.status {
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+.success {
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #22c55e;
+}
+.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #ef4444;
+}
 /* ================================
    RESPONSIVE
 ================================ */
 @media (max-width: 576px) {
   .avatarBlock {
-    width: 55px;
+    width: 58px;
   }
 
   .answerContent {
     font-size: 0.9rem;
+  }
+
+  .container {
+    margin: 20px auto;
   }
 }
