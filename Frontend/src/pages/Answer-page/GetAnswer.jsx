@@ -24,7 +24,7 @@ function GetAnswer({ refreshKey }) {
         headers: { Authorization: "Bearer " + token },
       });
 
-      // ✅ backend returns ARRAY directly
+      //  backend returns ARRAY directly
       setAnswers(Array.isArray(data) ? data : []);
     } catch (err) {
       console.log(err.response);
