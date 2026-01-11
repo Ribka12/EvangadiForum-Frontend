@@ -1,13 +1,15 @@
 import React, { useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "../../Utility/axios";
 import styles from "./QuestionPage.module.css";
+import { useTranslation } from "react-i18next";
 
 function GiveAnswer({ onSuccess }) {
   const answer = useRef();
   const [error, setError] = useState("");
   const [msg, setmsg] = useState("");
   const { question_id } = useParams();
+  const { t } = useTranslation(); 
   const token = localStorage.getItem("token");
 
   setTimeout(() => {
@@ -46,22 +48,26 @@ function GiveAnswer({ onSuccess }) {
       {error && <div className={styles.error}>{error}</div>}
 
       <div className={styles.answerHeader}>
-        <h4>Answer the Top Question</h4>
-        <small>Go to Question page</small>
+        <h4>{t("question.answerTop")}</h4>
+        <Link to="/home">
+          <small>Go to Home page</small>
+        </Link>
       </div>
       <textarea
         ref={answer}
         rows="3"
-        placeholder="Write your answer..."
+        placeholder={t("question.answerPlaceholder")}
         className={`${styles.textarea} ${error ? styles.textareaError : ""}`}
       ></textarea>
       <div>
         {msg && (
-          <div className={`${styles.status} ${styles.success}`}>{msg}</div>
+          <div className={`${styles.status} ${styles.success}`}>
+            {t("question.postSuccess")}
+          </div>
         )}
       </div>
       <button type="submit" className={styles.submitBtn}>
-        Post Answer
+        {t("question.postButton")}
       </button>
     </form>
   );

@@ -107,6 +107,9 @@ const resources = {
         postFailed: 'Failed to post answer', 
         noAnswers: 'No answers yet' 
       },
+      answer:{
+         
+      },
       errors: { 
         fillAll: 'Please fill in all fields', 
         emailRequired: 'Email is required',
