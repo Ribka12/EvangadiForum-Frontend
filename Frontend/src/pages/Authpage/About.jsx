@@ -1,3 +1,4 @@
+
 import { useTranslation } from "react-i18next"; // ADD THIS
 import { Link } from "react-router-dom";
 import styles from "./About.module.css";

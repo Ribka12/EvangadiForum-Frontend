@@ -1,0 +1,338 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.topSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.askBtn {
+  background: #1f6feb;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.askBtn:hover {
+  background: #1a5bc9;
+}
+
+.welcome {
+  color: #374151;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.name {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.search {
+  width: 100%;
+  height: 48px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0 20px;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.search:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Rest of your existing styles remain the same */
+.questionsList {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.questionCard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.questionCard:hover {
+  background: #f9fafb;
+}
+
+.questionCard:last-child {
+  border-bottom: none;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.questionContent {
+  flex: 1;
+}
+
+.questionTitle {
+  color: #111827;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.questionMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.questionUser {
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.questionTime {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.questionDescription {
+  color: #4b5563;
+  font-size: 15px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.arrow {
+  font-size: 32px;
+  color: #667eea;
+  cursor: pointer;
+  padding: 0 10px;
+  transition: transform 0.2s;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.arrow:hover {
+  transform: translateX(5px);
+}
+
+.noQuestions {
+  padding: 60px 24px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  gap: 20px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+/* added css */
+
+/* Add to your existing Home.module.css */
+
+.paginationInfo {
+  margin: 15px 0;
+  padding: 10px 15px;
+  background: #e9ecef;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #495057;
+  text-align: center;
+  border-left: 4px solid #007bff;
+}
+
+.paginationInfo strong {
+  color: #212529;
+  margin: 0 3px;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 123, 255, 0.1);
+  border-left-color: #007bff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.noQuestions {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px dashed #dee2e6;
+}
+
+/* Make the container fill the viewport */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content should grow to fill space */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Questions list takes available space */
+.questionsList {
+  flex: 1;
+}
+
+/* Centered Pagination Container */
+.paginationCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 20px 0;
+  width: 100%;
+}
+
+/* If you want it fixed at the bottom, use this instead: */
+.paginationFixedBottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Pagination Info */
+.paginationInfo {
+  margin: 15px 0;
+  padding: 10px 15px;
+  background: #e9ecef;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #495057;
+  text-align: center;
+  border-left: 4px solid #007bff;
+}
+
+.paginationInfo strong {
+  color: #212529;
+  margin: 0 3px;
+}
+
+/* Loading Styles */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 123, 255, 0.1);
+  border-left-color: #007bff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* No Questions */
+.noQuestions {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px dashed #dee2e6;
+}
