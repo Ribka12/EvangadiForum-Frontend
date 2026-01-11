@@ -1,30 +1,30 @@
+
+import { useTranslation } from "react-i18next"; // ADD THIS
 import { Link } from "react-router-dom";
 import styles from "./About.module.css";
 
 const About = () => {
+  const { t } = useTranslation(); // ADD THIS
+  console.log(t);
+
   return (
     <section className={styles.about}>
       <div className={styles.inner}>
         <div className={styles.content}>
-          <p className={styles.tag}>About</p>
+          <p className={styles.tag}>{t('about.tag')}</p> {/* UPDATED */}
 
-          <h1 className={styles.title}>Evangadi Networks</h1>
+          <h1 className={styles.title}>{t('about.networks')}</h1> {/* UPDATED */}
 
           <p className={styles.text}>
-            No matter what stage of life you are in, whether you’re just
-            starting elementary school or being promoted to CEO of a Fortune 500
-            company, you have much to offer to those who are trying to follow in
-            your footsteps.
+            {t('about.paragraph1')} {/* UPDATED */}
           </p>
 
           <p className={styles.text}>
-            Wheather you are willing to share your knowledge or you are just
-            looking to meet mentors of your own, please start by joining the
-            network here.
+            {t('about.paragraph2')} {/* UPDATED */}
           </p>
-          <span onClick={() => setShowPassword((prev) => !prev)}>
+          <span>
             <Link to="/Howitworks" className={styles.btn}>
-              HOW IT WORKS
+              {t('about.howItWorksButton')} {/* UPDATED */}
             </Link>
           </span>
         </div>

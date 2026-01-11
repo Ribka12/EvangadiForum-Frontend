@@ -1,9 +1,12 @@
+
 import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import api from "../../Utility/axios";
 import style from "./Login.module.css";
 import { Appstate } from "../../App";
+// Import i18n translation hook for multi-language support
+import { useTranslation } from "react-i18next";
 
 function Login() {
   const email = useRef(null);
@@ -12,6 +15,8 @@ function Login() {
   const { user, setUser } = useContext(Appstate);
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  // Get translation function for language-specific text
+  const { t } = useTranslation();
 
   // Auto-hide error after 5s
   function showError(message) {
@@ -25,28 +30,43 @@ function Login() {
     const emailValue = email.current.value.trim();
     const passwordValue = password.current.value.trim();
 
+    // Check if both fields are empty
     if (!emailValue && !passwordValue) {
-      showError("All fields are required");
+      // Previously: "All fields are required" (hardcoded)
+      // Now: Uses translation from errors.fillAll key
+      showError(t("errors.fillAll"));
       return;
     }
 
+    // Check if email is empty
     if (!emailValue) {
-      showError("Email is required");
+      // Previously: "Email is required" (hardcoded)
+      // Now: Uses translation from errors.emailRequired key
+      showError(t("errors.emailRequired"));
       return;
     }
 
+    // Validate email format
     if (!/^\S+@\S+\.\S+$/.test(emailValue)) {
-      showError("Invalid email address");
+      // Previously: "Invalid email address" (hardcoded)
+      // Now: Uses translation from errors.invalidEmail key
+      showError(t("errors.invalidEmail"));
       return;
     }
 
+    // Check if password is empty
     if (!passwordValue) {
-      showError("Password is required");
+      // Previously: "Password is required" (hardcoded)
+      // Now: Uses translation from errors.passwordRequired key
+      showError(t("errors.passwordRequired"));
       return;
     }
 
+    // Validate password length
     if (passwordValue.length < 6) {
-      showError("Invalid password");
+      // Previously: "Invalid password" (hardcoded)
+      // Now: Uses translation from errors.passwordLength key
+      showError(t("errors.passwordLength"));
       return;
     }
 
@@ -60,9 +80,11 @@ function Login() {
       setUser(data);
       navigate("/home");
     } catch (error) {
+      // Previously: "User not registered or incorrect password" (hardcoded)
+      // Now: Uses translation from errors.invalidCredentials key
       showError(
         error?.response?.data?.msg ||
-          "User not registered or incorrect password"
+          t("errors.invalidCredentials")
       );
     }
   }
@@ -75,29 +97,34 @@ function Login() {
   return (
     <div className={style.loginContainer}>
       <form className={style.loginForm} onSubmit={handleSubmit}>
-        <h4 className={style.loginTitle}>Login to your account</h4>
+        {/* Title: Previously hardcoded, now uses translation */}
+        <h4 className={style.loginTitle}>{t("login.title")}</h4>
 
         {/* SINGLE ERROR BOX */}
         {errorMsg && <div className={style.errorBox}>{errorMsg}</div>}
 
         <div className={style.formGroup}>
-          <label>Email</label>
+          {/* Email label: Previously hardcoded, now uses translation */}
+          <label>{t("login.email")}</label>
           <input
             ref={email}
             type="email"
-            placeholder="xyz@gmail.com"
+            // Email placeholder: Previously hardcoded, now uses translation
+            placeholder={t("login.emailPlaceholder")}
             className={errorMsg ? style.inputError : ""}
             onChange={clearError}
           />
         </div>
 
         <div className={style.formGroup}>
-          <label>Password</label>
+          {/* Password label: Previously hardcoded, now uses translation */}
+          <label>{t("login.password")}</label>
           <div className={style.passwordWrapper}>
             <input
               ref={password}
               type={showPassword ? "text" : "password"}
-              placeholder="Enter password"
+              // Password placeholder: Previously hardcoded, now uses translation
+              placeholder={t("login.passwordPlaceholder")}
               className={errorMsg ? style.inputError : ""}
               onChange={clearError}
             />
@@ -112,15 +139,22 @@ function Login() {
         </div>
 
         <div className={style.forgotPassword}>
-          <Link to="/auth/forgotpassword">Forgot password?</Link>
+          {/* Forgot password link: Previously hardcoded, now uses translation */}
+          <Link to="/auth/forgotpassword">{t("login.forgotPassword")}</Link>
         </div>
 
+        {/* Login button: Previously hardcoded, now uses translation */}
         <button type="submit" className={style.loginBtn}>
-          Login
+          {t("login.submit")}
         </button>
 
         <p className={style.registerText}>
-          No account? <Link to="/auth/register">Register</Link>
+          {/* "No account?" text: Previously hardcoded, now uses translation */}
+          {t("login.noAccount")}{" "}
+          <Link to="/auth/register">
+            {/* "Register" link: Previously hardcoded, now uses translation */}
+            {t("login.createAccount")}
+          </Link>
         </p>
       </form>
     </div>

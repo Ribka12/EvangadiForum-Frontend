@@ -183,3 +183,156 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+
+
+/* added css */
+
+/* Add to your existing Home.module.css */
+
+.paginationInfo {
+  margin: 15px 0;
+  padding: 10px 15px;
+  background: #e9ecef;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #495057;
+  text-align: center;
+  border-left: 4px solid #007bff;
+}
+
+.paginationInfo strong {
+  color: #212529;
+  margin: 0 3px;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 123, 255, 0.1);
+  border-left-color: #007bff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.noQuestions {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px dashed #dee2e6;
+}
+
+/* Make the container fill the viewport */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content should grow to fill space */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Questions list takes available space */
+.questionsList {
+  flex: 1;
+}
+
+/* Centered Pagination Container */
+.paginationCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 20px 0;
+  width: 100%;
+}
+
+/* If you want it fixed at the bottom, use this instead: */
+.paginationFixedBottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Pagination Info */
+.paginationInfo {
+  margin: 15px 0;
+  padding: 10px 15px;
+  background: #e9ecef;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #495057;
+  text-align: center;
+  border-left: 4px solid #007bff;
+}
+
+.paginationInfo strong {
+  color: #212529;
+  margin: 0 3px;
+}
+
+/* Loading Styles */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 123, 255, 0.1);
+  border-left-color: #007bff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* No Questions */
+.noQuestions {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px dashed #dee2e6;
+}

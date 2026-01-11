@@ -46,8 +46,8 @@ export default function Register() {
       // setUser(res.data.user || res.data);
       navigate("/auth/login");
     } catch (err) {
-      console.log("REGISTER ERROR 👉", err);
-      console.log("RESPONSE 👉", err.response?.data);
+      console.log("REGISTER ERROR ", err);
+      console.log("RESPONSE ", err.response?.data);
 
       setError(
         err.response?.data?.msg ||

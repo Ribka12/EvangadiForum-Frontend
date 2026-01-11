@@ -65,3 +65,20 @@
     display: none;
   }
 }
+
+
+/* added css */
+
+/* Add to your Header.module.css */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* If you want specific order: Home, HowItWorks, Language, Logout */
+.nav > :nth-child(1) { order: 1; } /* Home */
+.nav > :nth-child(2) { order: 2; } /* HowItWorks */
+.nav > :nth-child(3) { order: 3; } /* LanguageSwitcher */
+.nav > :nth-child(4) { order: 4; } /* Logout button */

@@ -1,36 +1,31 @@
+
+
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./Home.module.css";
-import axios from "axios";
 import instance from "../../Utility/axios";
 import { Appstate } from "../../App";
+import Pagination from "../../components/Pagination/Pagination";
 
 function Home() {
   const { user } = useContext(Appstate);
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  
   const [questions, setQuestions] = useState([]);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
-
- 
-
-  const fetchUserData = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-
-    try {
-      // Fetch user data if needed
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  };
+  
+  // PAGINATION STATES
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(3); // 3 questions per page
 
   useEffect(() => {
-    // const token = localStorage.getItem("token");
     if (!user) return;
 
     async function fetchQuestions() {
-       const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
       try {
         setLoading(true);
         const { data } = await instance.get("/question", {
@@ -50,18 +45,16 @@ function Home() {
       }
     }
     fetchQuestions();
-  }, [navigate]);
+  }, [navigate, user]);
 
-  const filtered = useMemo(() => {
+  // FILTER QUESTIONS
+  const filteredQuestions = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return questions;
+    
     return questions.filter((item) => {
       const title = (item.title || "").toLowerCase();
-      const description = (
-        item.description ||
-        item.content ||
-        ""
-      ).toLowerCase();
+      const description = (item.description || item.content || "").toLowerCase();
       const userName = (item.username || item.user_name || "").toLowerCase();
       return (
         title.includes(q) || description.includes(q) || userName.includes(q)
@@ -69,6 +62,22 @@ function Home() {
     });
   }, [questions, query]);
 
+  // GET CURRENT PAGE QUESTIONS
+  const currentQuestions = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredQuestions.slice(startIndex, endIndex);
+  }, [filteredQuestions, currentPage, itemsPerPage]);
+
+  // CALCULATE TOTAL PAGES
+  const totalPages = Math.ceil(filteredQuestions.length / itemsPerPage);
+
+  // RESET TO PAGE 1 WHEN SEARCH CHANGES
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [query]);
+
+  // FORMAT DATE
   const formatDate = (dateString) => {
     if (!dateString) return "Recently";
     const date = new Date(dateString);
@@ -92,7 +101,7 @@ function Home() {
     navigate(`/answer/${questionId}`);
   };
 
-  // Get username from context or localStorage
+  // GET USERNAME
   const getUsername = () => {
     if (user?.username) {
       return user.username;
@@ -125,37 +134,48 @@ function Home() {
     return (
       <div className={styles.loadingContainer}>
         <div className={styles.spinner}></div>
-        <p>Loading...</p>
+        <p>{t('common.loading')}</p>
       </div>
     );
   }
 
   return (
     <div className={styles.container}>
-      {/* Home Page Content - No Header here, it's in Layout */}
       <div className={styles.content}>
         {/* Ask Question and Welcome section */}
         <div className={styles.topSection}>
           <button onClick={handleAskQuestion} className={styles.askBtn}>
-            Ask Question
+            {t('home.askQuestion')}
           </button>
           <div className={styles.welcome}>
-            Welcome: <span className={styles.name}>{getUsername()}</span>
+            {t('home.welcome')} <span className={styles.name}>{getUsername()}</span>
           </div>
         </div>
 
         {/* Search Input */}
         <input
           className={styles.search}
-          placeholder="search question"
+          placeholder={t('home.searchPlaceholder')}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
 
+        {/* PAGINATION INFO */}
+        {questions.length > 0 && (
+          <div className={styles.paginationInfo}>
+            {t('common.showing')} <strong>{currentQuestions.length}</strong> {t('common.of')} <strong>{filteredQuestions.length}</strong> {t('home.questions').toLowerCase()}
+            {query && (
+              <span style={{ color: '#007bff', marginLeft: '10px' }}>
+                (Search: "{query}")
+              </span>
+            )}
+          </div>
+        )}
+
         {/* Questions List */}
         <div className={styles.questionsList}>
-          {filtered.length > 0 ? (
-            filtered.map((item) => {
+          {currentQuestions.length > 0 ? (
+            currentQuestions.map((item) => {
               const questionId = item.question_id || item.id;
               return (
                 <div
@@ -199,10 +219,25 @@ function Home() {
             })
           ) : (
             <div className={styles.noQuestions}>
-              <p>No questions found. Be the first to ask a question!</p>
+              <p>{t('home.empty')}</p>
             </div>
           )}
         </div>
+
+        {/* CENTERED PAGINATION AT BOTTOM */}
+        {totalPages > 1 && (
+          <div className={styles.paginationCenter}>
+            <Pagination
+              page={currentPage}
+              totalPages={totalPages}
+              onChange={setCurrentPage}
+              labels={{
+                prev: t('pagination.prev'),
+                next: t('pagination.next')
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

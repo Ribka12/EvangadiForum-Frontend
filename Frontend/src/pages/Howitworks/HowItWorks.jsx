@@ -1,54 +1,53 @@
+
+
 import React from "react";
+import { useTranslation } from "react-i18next"; // ADD THIS
 import styles from "./Howitworks.module.css";
 
 export default function HowItWorks() {
+  const { t } = useTranslation(); // ADD THIS
+
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>How Evangadi Forum Works</h1>
+      <h1 className={styles.title}>{t('howItWorks.title')}</h1> {/* UPDATED */}
 
       <p className={styles.subtitle}>
-        Evangadi Forum is a community-based question and answer platform where
-        users learn from each other by asking and answering questions.
+        {t('howItWorks.subtitle')} {/* UPDATED */}
       </p>
 
       <div className={styles.steps}>
         <div className={styles.step}>
-          <h3>1. Create an Account</h3>
+          <h3>{t('howItWorks.step1Title')}</h3> {/* UPDATED */}
           <p>
-            Sign up using your email and username. This allows you to
-            participate, ask questions, and provide answers to others.
+            {t('howItWorks.step1Description')} {/* UPDATED */}
           </p>
         </div>
 
         <div className={styles.step}>
-          <h3>2. Ask a Question</h3>
+          <h3>{t('howItWorks.step2Title')}</h3> {/* UPDATED */}
           <p>
-            Post your questions to the community. Be clear and specific so
-            others can understand and help you better.
+            {t('howItWorks.step2Description')} {/* UPDATED */}
           </p>
         </div>
 
         <div className={styles.step}>
-          <h3>3. Get Answers</h3>
+          <h3>{t('howItWorks.step3Title')}</h3> {/* UPDATED */}
           <p>
-            Community members will respond with helpful answers, explanations,
-            and examples based on their experience.
+            {t('howItWorks.step3Description')} {/* UPDATED */}
           </p>
         </div>
 
         <div className={styles.step}>
-          <h3>4. Help Others</h3>
+          <h3>{t('howItWorks.step4Title')}</h3> {/* UPDATED */}
           <p>
-            Share your knowledge by answering questions asked by other users and
-            contribute to the learning community.
+            {t('howItWorks.step4Description')} {/* UPDATED */}
           </p>
         </div>
 
         <div className={styles.step}>
-          <h3>5. Grow Together</h3>
+          <h3>{t('howItWorks.step5Title')}</h3> {/* UPDATED */}
           <p>
-            By asking, answering, and interacting, everyone grows their
-            knowledge and improves their skills together.
+            {t('howItWorks.step5Description')} {/* UPDATED */}
           </p>
         </div>
       </div>
