@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { useTranslation } from "react-i18next"; // ADD THIS
 import styles from "./Howitworks.module.css";
