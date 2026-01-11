@@ -5,11 +5,14 @@ import GiveAnswer from "./GiveAnswer";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import styles from "./QuestionPage.module.css";
 import GetAnswer from "./GetAnswer";
+import { useTranslation } from "react-i18next"; 
+
 
 function QuestionAnswer() {
   const [singleQuestion, setSingleQuestion] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
   const { question_id } = useParams();
+  const { t } = useTranslation();
   const token = localStorage.getItem("token");
 
   async function getSingleQuestion() {
@@ -38,7 +41,7 @@ function QuestionAnswer() {
 
   return (
     <div className={styles.container}>
-      <h4 className={styles.sectionTitle}>QUESTION</h4>
+      <h4 className={styles.sectionTitle}>{t('question.heading')}</h4>
       <div className={styles.titleRow}>
         <ArrowForwardIosIcon className={styles.arrowIcon} />
         <h4>{singleQuestion.title}</h4>
@@ -46,7 +49,7 @@ function QuestionAnswer() {
 
       <p className={styles.description}>{singleQuestion.description}</p>
 
-      <h5 className={styles.answerTitle}>Answers from the Community</h5>
+      <h5 className={styles.answerTitle}>{t('question.community')}</h5>
 
       <GetAnswer refreshKey={refreshKey} />
       
