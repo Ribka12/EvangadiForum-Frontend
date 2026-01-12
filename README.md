@@ -5,7 +5,7 @@ It allows users to register, log in, ask questions, view answers, and interact w
 
 ---
 
-## 🚀 Features
+##  Features
 
 - User authentication (Sign-up & Sign-in)
 - Responsive Header and Footer navigation
@@ -16,7 +16,7 @@ It allows users to register, log in, ask questions, view answers, and interact w
 
 ---
 
-## 🧩 Implemented Components & Pages
+##  Implemented Components & Pages
 
 ### 1️⃣ Header Component
 - Navigation links: **Home, Login, Logout**
@@ -76,7 +76,7 @@ It allows users to register, log in, ask questions, view answers, and interact w
 
 ---
 
-## 🔗 Routing
+##  Routing
 
 The application uses **React Router** for seamless navigation between pages:
 - `/` → Home
@@ -88,7 +88,7 @@ The application uses **React Router** for seamless navigation between pages:
 
 ---
 
-## 🎨 Styling
+##  Styling
 
 - CSS used for styling
 - Mobile-first responsive design
@@ -97,7 +97,7 @@ The application uses **React Router** for seamless navigation between pages:
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - **React**
 - **React Router DOM**
@@ -107,7 +107,7 @@ The application uses **React Router** for seamless navigation between pages:
 
 ---
 
-## ⚙️ Installation & Setup
+##  Installation & Setup
 
 1. Clone the repository:
    ```bash
