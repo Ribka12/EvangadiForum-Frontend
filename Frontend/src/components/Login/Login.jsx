@@ -1,4 +1,3 @@
-
 import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
@@ -62,14 +61,6 @@ function Login() {
       return;
     }
 
-    // Validate password length
-    if (passwordValue.length < 6) {
-      // Previously: "Invalid password" (hardcoded)
-      // Now: Uses translation from errors.passwordLength key
-      showError(t("errors.passwordLength"));
-      return;
-    }
-
     try {
       const { data } = await api.post("/user/login", {
         email: emailValue,
@@ -82,10 +73,7 @@ function Login() {
     } catch (error) {
       // Previously: "User not registered or incorrect password" (hardcoded)
       // Now: Uses translation from errors.invalidCredentials key
-      showError(
-        error?.response?.data?.msg ||
-          t("errors.invalidCredentials")
-      );
+      showError(error?.response?.data?.msg || t("errors.invalidCredentials"));
     }
   }
 
