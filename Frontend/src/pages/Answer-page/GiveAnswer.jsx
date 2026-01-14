@@ -45,6 +45,7 @@ function GiveAnswer({ onSuccess }) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.answerForm}>
+      
       {error && <div className={styles.error}>{error}</div>}
 
       <div className={styles.answerHeader}>
@@ -62,7 +63,7 @@ function GiveAnswer({ onSuccess }) {
       <div>
         {msg && (
           <div className={`${styles.status} ${styles.success}`}>
-            {t("question.postSuccess")}
+            {msg}
           </div>
         )}
       </div>
